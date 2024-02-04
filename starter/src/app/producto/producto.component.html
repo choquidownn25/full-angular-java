@@ -1,0 +1,174 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="alert alert-primary">
+      Advance table component is develop using
+      <strong>Angular Material Table</strong>. Main features are:<br /><br />
+    </div>
+    <div class="flex flex-col flex-auto min-w-0">
+      <p>Prueba</p>
+      <!-- Main -->
+      <div class="flex-auto p-6 sm:p-10">
+        <div class="header">
+          <h2 class="title">Producto List</h2>
+        </div>
+        <!-- CONTENT GOES HERE -->
+        <div class="flex flex-col items-center justify-center w-full h-full">
+          <div class="w-full max-w-3xl">
+            <div class="card">
+              <div class="mat-elevation-z8">
+                <div class="form">
+
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+                  </mat-form-field>
+                </div>
+                <div class="flex flex-col flex-auto min-w-0">
+                  <table mat-table [dataSource]="dataSource" matSort>
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        ID
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let row"> {{ row.id }}</mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="nombre">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Nombre
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let row">{{
+                        row.nombre
+                      }}</mat-cell>
+                    </ng-container>
+
+                    <!-- Descripcion Column -->
+                    <ng-container matColumnDef="descripcion">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Descripcion
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let row">
+                        {{ row.descripcion }}
+                      </mat-cell>
+                    </ng-container>
+
+                    <!-- precio Column -->
+                    <ng-container matColumnDef="precio">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Precio
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let row">
+                        {{ row.precio }}
+                      </mat-cell>
+                    </ng-container>
+
+                    <!-- precio Column -->
+                    <ng-container matColumnDef="cantidad">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Cantidad
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let row">
+                        {{ row.cantidad }}
+                      </mat-cell>
+                    </ng-container>
+
+                    <!-- precio Column -->
+                    <ng-container matColumnDef="imagen">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Imagen
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let row">
+                        {{ row.imagen }}
+                      </mat-cell>
+                    </ng-container>
+
+                    <!-- actions -->
+                    <ng-container matColumnDef="actions">
+                      <mat-header-cell *matHeaderCellDef>
+                        <button
+                          mat-icon-button
+                          color="primary"
+                          (click)="addNew()"
+                        >
+                          <mat-icon
+                            aria-label="Example icon-button with a heart icon"
+                            >add</mat-icon
+                          >
+                        </button>
+                        <button
+                          mat-icon-button
+                          color="primary"
+                          (click)="agregarFormularioProduct()"
+                        >
+                          <mat-icon
+                            aria-label="Example icon-button with a heart icon"
+                            >add</mat-icon
+                          >
+                        </button>
+                        <img src="assets/images/icons/xlsx.png" alt="" (click)="exportExcel()" />
+                      </mat-header-cell>
+
+                      <mat-cell *matCellDef="let row; let i = index">
+                        <button
+                          mat-icon-button
+                          color="accent"
+                          (click)="
+                            startEdit(
+                              i,
+                              row.id,
+                              row.nombre,
+                              row.descripcion,
+                              row.precio,
+                              row.cantidad,
+                              row.imagen
+                            )
+                          "
+                        >
+                          <mat-icon aria-label="Edit">edit</mat-icon>
+                        </button>
+
+                        <button
+                          mat-icon-button
+                          color="accent"
+                          (click)="
+                            deleteItem(
+                              i,
+                              row.id,
+                              row.nombre,
+                              row.descripcion,
+                              row.precio,
+                              row.cantidad,
+                              row.imagen
+                            )
+                          "
+                        >
+                          <mat-icon aria-label="Delete">delete</mat-icon>
+                        </button>
+
+                        
+                      </mat-cell>
+                    </ng-container>
+                    <mat-header-row
+                      *matHeaderRowDef="displayedColumns"
+                    ></mat-header-row>
+                    <mat-row
+                      *matRowDef="let row; columns: displayedColumns"
+                    ></mat-row>
+
+                    <!-- Row shown when there is no matching data. -->
+                  </table>
+                  <mat-paginator
+                    [pageSize]="2"
+                    [pageSizeOptions]="[2, 4, 6, 10, 20, 100]"
+                  >
+                  </mat-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
